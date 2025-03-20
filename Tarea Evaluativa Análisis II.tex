@@ -1,0 +1,290 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc} % para caracteres especiales
+\usepackage[T1]{fontenc}    % mejora el formatting
+\usepackage{amsmath, amssymb} % simbolos matematicos
+
+\title{Condición Necesaria y Suficiente de Integrabilidad}
+\author{Alfonso y Meylí }
+\date{} 
+\begin{document}
+	
+	\maketitle
+	
+	\section{Introducción}
+	En el presente material, presentamos la demostración de la condición necesaria y suficiente de integrabilidad. Además, incuiremos los gráficos de la suma de Riemann y las sumas inferiores y superiores de Darboux.
+	
+	\section{Teorema de la Condición Necesaria y Suficiente de Integrabilidad}
+	Demostraremos que las afirmaciones siguientes son equivalentes:
+	
+	\[
+	f \in R[a,b] \iff \forall \varepsilon > 0, \exists P \text{ de [a,b] tal que }   S(f,P) - s(f,P) < \varepsilon \iff I_{\text{inf}} = I_{\text{sup}}.
+	\]
+	
+	
+	\textbf{Donde:}
+	\begin{itemize}
+		\item \( [a,b] \): límites inferior y superior de integración.
+		\item \( P \): partición de [a,b].
+		\item \( S(f,P) \): suma superior de Darboux para la función f y correspondiente a la partición P.
+		\item \( s(f,P) \): suma inferior de Darboux para la función f y correspondiente a la partición P.
+		\item \( I_{\text{inf}} \): ínfimo de las sumas superiores.
+		\item \( I_{\text{sup}} \): supremo de las sumas inferiores.
+	\end{itemize}
+	
+	\subsection{Primera Implicación}
+
+
+	Aquí demostraremos que:
+	
+	
+	
+	\[
+	f \in R[a,b] \Rightarrow \forall \varepsilon > 0, \exists P \text{ de [a,b] tal que  }   S(f,P) - s(f,P) < \varepsilon 
+	\]
+	
+	
+	
+	Como:
+	
+	\[
+	f \in \c{R}[a,b] 
+	\]
+	
+	Dado:
+	
+	\[
+	\forall {E_k}      
+	\varepsilon > 0, \exists P = {{x_i}}^n _{i=0} \text{ de [a,b] tal que  } \left| \sigma(f, P, \{E_k\}) - I \right| < \epsilon 
+	\]
+	
+	Tomando $\epsilon/4$ , eliminamos el módulo y sumamos el límite de la suma integral en ambos lados de la expresión, obteniendo la siguiente desigualdad:
+	
+	
+	
+	\[
+	I - \varepsilon/4 < \sigma(f, P, \{E_k\}) < I + \varepsilon/4.
+	\]
+	
+	
+	
+	Sabemos que como propiedad de las sumas de Darboux, cualquiera sea la selección de puntos:
+	
+	
+	
+	\[
+	E_k \in [x_{\text{i-1}},x_{\text{i}}],
+	\]
+	
+	
+	
+	Se tiene que:
+	
+	
+	
+	\[
+	s(f, P) \leq \sigma(f, P) \leq S(f, P).
+	\]
+	
+	
+	
+	Esto es debido a que, por la definición de suma inferior y superior de Darboux:
+	
+	
+	
+	\[
+	s(f, P) = \sum m_i \Delta x_i \quad \text{y} \quad S(f, P) = \sum M_i \Delta x_i.
+	\]
+	
+	
+	
+	Siendo \( m_i = \inf f \) y \( M_i = \sup f \):
+	
+	
+	
+	\[
+	m_i \leq f(\chi_i) \leq M_i.
+	\]
+	
+	
+	
+	Este producto se puede realizar porque:
+	
+	
+	
+	\[
+	\Delta x_i = x_i - x_{i-1} > 0.
+	\]
+	
+	
+	
+	Por tanto, la desigualdad quedaría como:
+	
+	
+	
+	\[
+	\sum m_i \Delta x_i \leq \sum f(\chi_i) \Delta x_i \leq \sum M_i \Delta x_i.
+	\]
+	
+	
+	
+	Regresando a la desigualdad principal y sustituyendo las sumas inferiores y superiores de Darboux:
+	
+	
+	
+	\[
+	I - \varepsilon/4 < s(f, P) \leq \sigma(f, P, \{E_k\}) \leq S(f, P) < I + \varepsilon/4.
+	\]
+	
+	
+	
+	Restando:
+	
+	
+	
+	\[
+	S(f, P) - s(f, P) \leq \varepsilon/2 < \varepsilon.
+	\]
+	
+	Hemos llegado a que:
+	
+	\[
+	f \in R[a,b] \Rightarrow \forall \varepsilon > 0, \exists P \text{ de [a,b] tal que  }   S(f,P) - s(f,P) < \varepsilon
+	\]
+	
+	
+	\subsection{Segunda implicación}
+	
+	
+	Ahora demostraremos que:
+	
+	\[
+	\forall \varepsilon > 0, \exists P \text{ de [a,b] tal que }  S(f,P) - s(f,P) < \varepsilon \Rightarrow I_{\text{inf}} = I_{\text{sup}}
+	\]
+	
+	
+	Como:
+	
+	
+	
+	\[
+	I_{\text{sup}} = \sup s(f, P) \Longrightarrow s(f,P) \leq I_{\text{sup}},
+	\]
+	
+	
+	\[
+	I_{\text{inf}} = \inf S(f, P) \Longrightarrow S(f,P) \geq I_{\text{inf}}.
+	\]
+	
+	
+	
+	Se deriva que:
+	
+	
+	
+	\[
+	- \varepsilon < s(f, P) \leq I_{\text{sup}} \leq I_{\text{inf}} \leq S(f, P) < \varepsilon.
+	\]
+	
+	
+	
+	Por tanto cuando se resta:
+	
+	
+	
+	\[
+	0 \leq I_{\text{inf}} - I_{\text{sup}} \leq S(f, P) - s(f, P) < \varepsilon.
+	\] \[\forall \varepsilon > 0\]
+	
+	
+	
+	Finalmente:
+	
+	
+	
+	\[
+	I_{\text{sup}} = I_{\text{inf}}.
+	\]
+	
+	
+	
+	\subsection{Tercera Implicación}
+	
+	
+	Para la última implicación estaremos demostrando que:
+	
+	\[
+	I_{\text{sup}} = I_{\text{inf}} \Rightarrow f \in R[a,b]
+	\]
+	
+	Como \( I_{\text{sup}} = I_{\text{inf}} = I \), 
+	
+	Por definición de supremo e ínfimo se tiene que:
+	
+	\[
+	I_{\text{sup}} = s(f,P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_1 : s(f, P_1) > I_{\text{sup}} - \varepsilon,
+	\]
+	
+	\[
+	I_{\text{inf}} = S(f,P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_2 : S(f, P_2) < I_{\text{inf}} + \varepsilon.
+	\]
+	
+	
+	
+	Tomando:
+	
+	
+	
+	\[
+	P_\varepsilon = P_1 \cup P_2,
+	\]
+	
+	
+	
+	
+	
+	\[
+	P_\varepsilon \supset P_1 \land P_\varepsilon \supset P_2,
+	\]
+	
+	
+	
+	Se infiere que:
+	
+	
+	
+	\[
+	\forall P \supset P_\varepsilon \quad \Rightarrow \quad I - \varepsilon < s(f, P_1) \leq s(f, P) \leq S(f,P) \leq S(f, P_2) < I + \varepsilon.
+	\]
+	
+	
+	
+	Conociendo que la suma integral de Riemann se encuentra acotada por las sumas inferiores y superiores de Darboux:
+	
+	
+	
+	\[
+	\forall {E_k} P \supset P_\varepsilon \quad \Rightarrow \quad I - \varepsilon < s(f, P) \leq \sigma(f, P, \{E_k\}) \leq S(f,P) < I + \varepsilon.
+	\]
+	
+	
+	
+	Restando I a la expresión y quedándonos solo con la suma de Riemann, obtenemos que:
+	
+	
+	
+	\[
+	\forall \varepsilon > 0, \exists P_\varepsilon \forall P \subset P_\varepsilon \quad \big| \sigma(f,P) - I \big| < \varepsilon.
+	\]
+	
+	Concluimos que:
+	
+	\[
+	\left| \sigma(f, P, \{E_k\}) - I \right| < \varepsilon
+	\]
+	
+	
+	
+	Hemos demostrado la condición necesaria y suficiente para la integrabilidad, mostrando las 3 equivalencias del teorema.
+	
+\end{document}
