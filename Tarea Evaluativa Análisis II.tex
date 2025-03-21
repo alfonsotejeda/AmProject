@@ -1,38 +1,61 @@
 \documentclass[a4paper,12pt]{article}
 
-\usepackage[utf8]{inputenc} % para caracteres especiales
-\usepackage[T1]{fontenc}    % mejora el formatting
-\usepackage{amsmath, amssymb} % simbolos matematicos
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}   
+\usepackage{amsmath, amssymb} 
 
-\title{Condición Necesaria y Suficiente de Integrabilidad}
-\author{Alfonso y Meylí }
+\title{}
+\author{}
 \date{} 
+
 \begin{document}
 	
-	\maketitle
+\begin{titlepage}
+	\centering
+	\vspace*{1in}
+	{\Huge \textbf{Trabajo de Análisis Matemático II}} \\[2cm]
+	{\LARGE \textbf{\textit{{Condición necesaria y suficiente de integrabilidad}}}} \\[0.5cm]
+	{\LARGE \textbf{\textit{{Suma de Riemann y Sumas de Darboux}}}}\\[1cm]
 	
+	
+	\vfill 
+	
+	
+	\begin{minipage}{\textwidth}
+		\raggedright
+		{\large Universidad de La Habana} \\[1cm]
+		{\large Facultad MATCOM} \\[1cm]
+		{\large Ciencia de la Computación} \\[0.5cm]
+		{\large Meylí y Alfonso}
+	\end{minipage}
+\end{titlepage}
 	\section{Introducción}
-	En el presente material, presentamos la demostración de la condición necesaria y suficiente de integrabilidad. Además, incuiremos los gráficos de la suma de Riemann y las sumas inferiores y superiores de Darboux.
+	En el presente material, presentamos la demostración de una de las condiciones necesarias y suficientes de integrabilidad. Además, incluiremos gráficos de la suma de Riemann, así como de las sumas inferior y superior de Darboux, para algunas funciones. También presentaremos un ejemplo de una función que no es Riemann integrable en el intervalo dado.
 	
 	\section{Teorema de la Condición Necesaria y Suficiente de Integrabilidad}
 	Demostraremos que las afirmaciones siguientes son equivalentes:
 	
 	\[
-	f \in R[a,b] \iff \forall \varepsilon > 0, \exists P \text{ de [a,b] tal que }   S(f,P) - s(f,P) < \varepsilon \iff I_{\text{inf}} = I_{\text{sup}}.
+	\begin{aligned}
+		(i) &\quad f \in \mathcal{R}[a,b]  \\
+		(ii) &\quad \forall \varepsilon > 0, \exists P \text{ partición de } [a,b] \text{ tal que } S(f,P) - s(f,P) < \varepsilon  \\
+		(iii) &\quad \overline{I} = \underline{I}
+	\end{aligned}
 	\]
+	\quad \\
 	
 	
 	\textbf{Donde:}
 	\begin{itemize}
-		\item \( [a,b] \): límites inferior y superior de integración.
-		\item \( P \): partición de [a,b].
-		\item \( S(f,P) \): suma superior de Darboux para la función f y correspondiente a la partición P.
-		\item \( s(f,P) \): suma inferior de Darboux para la función f y correspondiente a la partición P.
-		\item \( I_{\text{inf}} \): ínfimo de las sumas superiores.
-		\item \( I_{\text{sup}} \): supremo de las sumas inferiores.
+		\item \( [a,b] \): intervalo de integración.
+		\item \( P \): partición de [a,b]. $ a = x_0 < x_1 < ... < x_{n-1} < x_n = b $
+		\item \( S(f,P) \): suma superior de Darboux para la función f correspondiente a la partición P.
+		\item \( s(f,P) \): suma inferior de Darboux para la función f correspondiente a la partición P.
+		\item \( \overline{I} \): ínfimo de las sumas superiores.
+		\item \( \underline{I} \): supremo de las sumas inferiores.
 	\end{itemize}
 	
-	\subsection{Primera Implicación}
+	\subsection{Primera Implicación: $ (i) \Rightarrow (ii) $ }
 
 
 	Aquí demostraremos que:
@@ -40,7 +63,7 @@
 	
 	
 	\[
-	f \in R[a,b] \Rightarrow \forall \varepsilon > 0, \exists P \text{ de [a,b] tal que  }   S(f,P) - s(f,P) < \varepsilon 
+	f \in \mathcal{R}[a,b] \Rightarrow \forall \varepsilon > 0, \exists P \text{ partición de [a,b] tal que  }   S(f,P) - s(f,P) < \varepsilon 
 	\]
 	
 	
@@ -54,8 +77,7 @@
 	Dado:
 	
 	\[
-	\forall {E_k}      
-	\varepsilon > 0, \exists P = {{x_i}}^n _{i=0} \text{ de [a,b] tal que  } \left| \sigma(f, P, \{E_k\}) - I \right| < \epsilon 
+	\forall \varepsilon > 0, \exists P = \left\{ x_i \right\}_{i=0}^{n}  \text{ de [a,b] tal que  } \left| \sigma(f, P, \{\xi_i\}) - I \right| < \epsilon 
 	\]
 	
 	Tomando $\epsilon/4$ , eliminamos el módulo y sumamos el límite de la suma integral en ambos lados de la expresión, obteniendo la siguiente desigualdad:
@@ -63,7 +85,7 @@
 	
 	
 	\[
-	I - \varepsilon/4 < \sigma(f, P, \{E_k\}) < I + \varepsilon/4.
+	I - \varepsilon/4 < \sigma(f, P, \{\xi_i\}) < I + \varepsilon/4.
 	\]
 	
 	
@@ -73,7 +95,7 @@
 	
 	
 	\[
-	E_k \in [x_{\text{i-1}},x_{\text{i}}],
+	\xi_i \in [x_{\text{i-1}},x_{\text{i}}],
 	\]
 	
 	
@@ -93,37 +115,47 @@
 	
 	
 	\[
-	s(f, P) = \sum m_i \Delta x_i \quad \text{y} \quad S(f, P) = \sum M_i \Delta x_i.
+	s(f, P) = \sum_{i=1}^{n} m_i \Delta x_i \quad \text{y} \quad S(f,P) = \sum_{i=1}^{n} M_i \Delta x_i.
 	\]
 	
 	
 	
-	Siendo \( m_i = \inf f \) y \( M_i = \sup f \):
-	
-	
+	Siendo: 
 	
 	\[
-	m_i \leq f(\chi_i) \leq M_i.
+	\quad m_i = \inf_{\substack{x \in [x_{i-1}, x_i]}} f(x), \quad
+	M_i = \sup_{\substack{x \in [x_{i-1}, x_i]}} f(x)
 	\]
 	
 	
 	
-	Este producto se puede realizar porque:
-	
-	
-	
 	\[
-	\Delta x_i = x_i - x_{i-1} > 0.
+	m_i \leq f(\xi_i) \leq M_i.
 	\]
 	
 	
 	
-	Por tanto, la desigualdad quedaría como:
-	
+
+	Multiplicando la desigualdad por la cantidad positiva:
 	
 	
 	\[
-	\sum m_i \Delta x_i \leq \sum f(\chi_i) \Delta x_i \leq \sum M_i \Delta x_i.
+\Delta x_i = x_i - x_{i-1} > 0.
+	\]
+	
+	
+	
+	Obtenemos que:
+	
+	\[
+	m_i \Delta x_i \leq f(\xi_i) \Delta x_i \leq M_i \Delta x_i
+	\]
+	
+	Entonces:
+	
+	
+	\[
+	\sum_{i=1}^{n} m_i \Delta x_i \leq \sum f(\xi_i) \Delta x_i \leq \sum_{i=1}^{n} M_i \Delta x_i.
 	\]
 	
 	
@@ -133,7 +165,7 @@
 	
 	
 	\[
-	I - \varepsilon/4 < s(f, P) \leq \sigma(f, P, \{E_k\}) \leq S(f, P) < I + \varepsilon/4.
+	I - \varepsilon/4 < s(f, P) \leq \sigma(f, P, \{\xi_i\}) \leq S(f, P) < I + \varepsilon/4.
 	\]
 	
 	
@@ -149,17 +181,17 @@
 	Hemos llegado a que:
 	
 	\[
-	f \in R[a,b] \Rightarrow \forall \varepsilon > 0, \exists P \text{ de [a,b] tal que  }   S(f,P) - s(f,P) < \varepsilon
+	f \in \mathcal{R}[a,b] \Rightarrow \forall \varepsilon > 0, \exists P \text{ de [a,b] tal que  }   S(f,P) - s(f,P) < \varepsilon
 	\]
 	
 	
-	\subsection{Segunda implicación}
+	\subsection{Segunda implicación: $ (i) \Rightarrow (ii) $ }
 	
 	
 	Ahora demostraremos que:
 	
 	\[
-	\forall \varepsilon > 0, \exists P \text{ de [a,b] tal que }  S(f,P) - s(f,P) < \varepsilon \Rightarrow I_{\text{inf}} = I_{\text{sup}}
+	\forall \varepsilon > 0, \exists P \text{ partición de [a,b] tal que }  S(f,P) - s(f,P) < \varepsilon \Rightarrow \overline{I} = \underline{I}
 	\]
 	
 	
@@ -168,12 +200,12 @@
 	
 	
 	\[
-	I_{\text{sup}} = \sup s(f, P) \Longrightarrow s(f,P) \leq I_{\text{sup}},
+	\underline{I} = \sup s(f, P) \Longrightarrow s(f,P) \leq \underline{I}
 	\]
 	
 	
 	\[
-	I_{\text{inf}} = \inf S(f, P) \Longrightarrow S(f,P) \geq I_{\text{inf}}.
+	\overline{I} = \inf S(f, P) \Longrightarrow S(f,P) \geq \overline{I}
 	\]
 	
 	
@@ -183,9 +215,16 @@
 	
 	
 	\[
-	- \varepsilon < s(f, P) \leq I_{\text{sup}} \leq I_{\text{inf}} \leq S(f, P) < \varepsilon.
+	- \varepsilon < s(f, P) \leq \underline{I} \leq \overline{I} \leq S(f, P) < \varepsilon.
 	\]
 	
+	La desigualdad:
+	
+	\[
+	 \underline{I} \leq \overline{I}
+	\]
+	
+	se debe a que las sumas inferiores de Darboux siempre son menores que las sumas superiores.
 	
 	
 	Por tanto cuando se resta:
@@ -193,7 +232,7 @@
 	
 	
 	\[
-	0 \leq I_{\text{inf}} - I_{\text{sup}} \leq S(f, P) - s(f, P) < \varepsilon.
+	0 \leq \overline{I} - \underline{I} \leq S(f, P) - s(f, P) < \varepsilon.
 	\] \[\forall \varepsilon > 0\]
 	
 	
@@ -203,30 +242,30 @@
 	
 	
 	\[
-	I_{\text{sup}} = I_{\text{inf}}.
+	\underline{I} = \overline{I}.
 	\]
 	
 	
 	
-	\subsection{Tercera Implicación}
+	\subsection{Tercera Implicación: $ (iii) \Rightarrow (i) $ } 
 	
 	
 	Para la última implicación estaremos demostrando que:
 	
 	\[
-	I_{\text{sup}} = I_{\text{inf}} \Rightarrow f \in R[a,b]
+	\underline{I} = \overline{I} \Rightarrow f \in \mathcal{R}[a,b]
 	\]
 	
-	Como \( I_{\text{sup}} = I_{\text{inf}} = I \), 
+	Como \( \underline{I} = \overline{I} = I \), 
 	
 	Por definición de supremo e ínfimo se tiene que:
 	
 	\[
-	I_{\text{sup}} = s(f,P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_1 : s(f, P_1) > I_{\text{sup}} - \varepsilon,
+	\underline{I} = sup s(f,P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_1 \text{ partición de [a,b] tal que } : s(f, P_1) > \underline{I} - \varepsilon,
 	\]
 	
 	\[
-	I_{\text{inf}} = S(f,P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_2 : S(f, P_2) < I_{\text{inf}} + \varepsilon.
+	\overline{I} = inf S(f,P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_2\text{ partición de [a,b] tal que } : S(f, P_2) < \overline{I} + \varepsilon.
 	\]
 	
 	
@@ -264,7 +303,7 @@
 	
 	
 	\[
-	\forall {E_k} P \supset P_\varepsilon \quad \Rightarrow \quad I - \varepsilon < s(f, P) \leq \sigma(f, P, \{E_k\}) \leq S(f,P) < I + \varepsilon.
+	\forall {E\xi_i} P \supset P_\varepsilon \quad \Rightarrow \quad I - \varepsilon < s(f, P) \leq \sigma(f, P, \{\xi_i\}) \leq S(f,P) < I + \varepsilon.
 	\]
 	
 	
@@ -274,17 +313,30 @@
 	
 	
 	\[
-	\forall \varepsilon > 0, \exists P_\varepsilon \forall P \subset P_\varepsilon \quad \big| \sigma(f,P) - I \big| < \varepsilon.
+	\forall \varepsilon > 0, \exists P_\varepsilon \forall P \cup P_\varepsilon \quad \big| \sigma(f,P) - I \big| < \varepsilon.
 	\]
 	
 	Concluimos que:
 	
 	\[
-	\left| \sigma(f, P, \{E_k\}) - I \right| < \varepsilon
+	\left| \sigma(f, P, \{\xi_i\}) - I \right| < \varepsilon
 	\]
 	
+	Finalmente, hemos demostrado las siguientes implicaciones:
 	
+	\[
+	f \in \mathcal{R}[a,b] \Rightarrow \varepsilon > 0, \exists P \text{ de [a,b] tal que }   S(f,P) - s(f,P) < \varepsilon \Rightarrow \overline{I} = \underline{I} \Rightarrow f \in \mathcal{R}[a,b] 
+	\]
+	
+	Por tanto, por transitividad concluimos que:
+	
+	\[
+	f \in \mathcal{R}[a,b] \Longleftrightarrow \varepsilon > 0, \exists P \text{ de [a,b] tal que }   S(f,P) - s(f,P) < \varepsilon \Longleftrightarrow \overline{I} = \underline{I} 
+	\]
 	
 	Hemos demostrado la condición necesaria y suficiente para la integrabilidad, mostrando las 3 equivalencias del teorema.
 	
+	\subsection{Gráficos de las sumas de Riemann y las sumas inferiores y superiores de Darboux}
+	
 \end{document}
+
