@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}   
 \usepackage{amsmath, amssymb} 
+\usepackage{graphicx}
 
 \title{}
 \author{}
@@ -49,12 +50,16 @@
 	\begin{itemize}
 		\item \( [a,b] \): intervalo de integración.
 		\item \( P \): partición de [a,b]. $ a = x_0 < x_1 < ... < x_{n-1} < x_n = b $
-		\item \( S(f,P) \): suma superior de Darboux para la función f correspondiente a la partición P.
-		\item \( s(f,P) \): suma inferior de Darboux para la función f correspondiente a la partición P.
+		\item \( S(f,P) \): suma superior de Darboux para la función f correspondiente a la partición P. $ \sum_{i=1}^{n} M_i \Delta x_i $
+		\item \( s(f,P) \): suma inferior de Darboux para la función f correspondiente a la partición P. $ \sum_{i=1}^{n} m_i \Delta x_i $
 		\item \( \overline{I} \): ínfimo de las sumas superiores.
 		\item \( \underline{I} \): supremo de las sumas inferiores.
+		\item \( \sigma(f, P, \{\xi_i\}) \): Suma de Riemann. $ \sum f(\xi_i) \Delta x_i $ 
+		\item \( \xi_i \in [x_{\text{i-1}},x_{\text{i}}] \) $ i = 0,1,...,n $ 
+		\item \( \Delta x_i = x_i - x_{i-1} \): longitud del intervalo $[x_{i-1}, x_i ]$
+		
+		
 	\end{itemize}
-	
 	\subsection{Primera Implicación: $ (i) \Rightarrow (ii) $ }
 
 
@@ -66,19 +71,24 @@
 	f \in \mathcal{R}[a,b] \Rightarrow \forall \varepsilon > 0, \exists P \text{ partición de [a,b] tal que  }   S(f,P) - s(f,P) < \varepsilon 
 	\]
 	
-	
+	\quad \\
 	
 	Como:
 	
 	\[
-	f \in \c{R}[a,b] 
+	f \in \mathcal{R}[a,b] 
 	\]
 	
-	Dado:
+	Se tiene por definición:
 	
 	\[
-	\forall \varepsilon > 0, \exists P = \left\{ x_i \right\}_{i=0}^{n}  \text{ de [a,b] tal que  } \left| \sigma(f, P, \{\xi_i\}) - I \right| < \epsilon 
+	\forall \varepsilon > 0, \exists P_\varepsilon = \left\{ x_i \right\}_{i=0}^{n}  \text{ partición de [a,b] tal que  } \forall P \supset P_\varepsilon \text{ (P partición más fina que $ P_\varepsilon $)} 
 	\]
+	\[
+	 \text{se cumple: } \left| \sigma(f, P, \{\xi_i\}) - I \right| < \epsilon \text{ , donde I es algún número real}
+	\]
+	
+	\quad \\
 	
 	Tomando $\epsilon/4$ , eliminamos el módulo y sumamos el límite de la suma integral en ambos lados de la expresión, obteniendo la siguiente desigualdad:
 	
@@ -88,9 +98,9 @@
 	I - \varepsilon/4 < \sigma(f, P, \{\xi_i\}) < I + \varepsilon/4.
 	\]
 	
+	\quad \\
 	
-	
-	Sabemos que como propiedad de las sumas de Darboux, cualquiera sea la selección de puntos:
+	Sabemos que como propiedad de las sumas de Darboux, cualquiera sea la participación P y la selección de puntos:
 	
 	
 	
@@ -105,7 +115,7 @@
 	
 	
 	\[
-	s(f, P) \leq \sigma(f, P) \leq S(f, P).
+	s(f, P) \leq \sigma(f, P, \{\xi_i\}) \leq S(f, P).
 	\]
 	
 	
@@ -118,7 +128,7 @@
 	s(f, P) = \sum_{i=1}^{n} m_i \Delta x_i \quad \text{y} \quad S(f,P) = \sum_{i=1}^{n} M_i \Delta x_i.
 	\]
 	
-	
+	\quad \\
 	
 	Siendo: 
 	
@@ -158,7 +168,7 @@
 	\sum_{i=1}^{n} m_i \Delta x_i \leq \sum f(\xi_i) \Delta x_i \leq \sum_{i=1}^{n} M_i \Delta x_i.
 	\]
 	
-	
+	\quad \\
 	
 	Regresando a la desigualdad principal y sustituyendo las sumas inferiores y superiores de Darboux:
 	
@@ -168,7 +178,7 @@
 	I - \varepsilon/4 < s(f, P) \leq \sigma(f, P, \{\xi_i\}) \leq S(f, P) < I + \varepsilon/4.
 	\]
 	
-	
+	\quad \\
 	
 	Restando:
 	
@@ -178,37 +188,38 @@
 	S(f, P) - s(f, P) \leq \varepsilon/2 < \varepsilon.
 	\]
 	
+	\quad \\
+	
 	Hemos llegado a que:
 	
 	\[
-	f \in \mathcal{R}[a,b] \Rightarrow \forall \varepsilon > 0, \exists P \text{ de [a,b] tal que  }   S(f,P) - s(f,P) < \varepsilon
+	f \in \mathcal{R}[a,b] \Rightarrow \forall \varepsilon > 0,     \exists P \text{ de [a,b] tal que  }   S(f,P) - s(f,P) < \varepsilon
 	\]
-	
-	
-	\subsection{Segunda implicación: $ (i) \Rightarrow (ii) $ }
+	\subsection{Segunda implicación: $ (ii) \Rightarrow (iii) $ }
 	
 	
 	Ahora demostraremos que:
-	
 	\[
 	\forall \varepsilon > 0, \exists P \text{ partición de [a,b] tal que }  S(f,P) - s(f,P) < \varepsilon \Rightarrow \overline{I} = \underline{I}
 	\]
 	
+	\quad \\
 	
 	Como:
 	
 	
 	
 	\[
-	\underline{I} = \sup s(f, P) \Longrightarrow s(f,P) \leq \underline{I}
+	\underline{I} = \sup_P s(f, P) \Longrightarrow s(f,P) \leq \underline{I}   
 	\]
-	
 	
 	\[
-	\overline{I} = \inf S(f, P) \Longrightarrow S(f,P) \geq \overline{I}
+	\overline{I} = \inf_P S(f, P) \text{text} \Longrightarrow S(f,P) \geq \overline{I}
 	\]
 	
+	Ambas sobre todas las particiones posibles
 	
+	\quad \\
 	
 	Se deriva que:
 	
@@ -226,6 +237,7 @@
 	
 	se debe a que las sumas inferiores de Darboux siempre son menores que las sumas superiores.
 	
+	\quad \\
 	
 	Por tanto cuando se resta:
 	
@@ -237,7 +249,7 @@
 	
 	
 	
-	Finalmente:
+	Se llega a:
 	
 	
 	
@@ -256,19 +268,23 @@
 	\underline{I} = \overline{I} \Rightarrow f \in \mathcal{R}[a,b]
 	\]
 	
+	\quad \\
+	
 	Como \( \underline{I} = \overline{I} = I \), 
+	
+	\quad \\
 	
 	Por definición de supremo e ínfimo se tiene que:
 	
 	\[
-	\underline{I} = sup s(f,P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_1 \text{ partición de [a,b] tal que } : s(f, P_1) > \underline{I} - \varepsilon,
+	\underline{I} = \sup_P s(f, P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_1 \text{ partición de [a,b] tal que } : s(f, P_1) > \underline{I} - \varepsilon,
 	\]
 	
 	\[
-	\overline{I} = inf S(f,P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_2\text{ partición de [a,b] tal que } : S(f, P_2) < \overline{I} + \varepsilon.
+	\overline{I} = \inf_P S(f, P) \Longleftrightarrow \forall \varepsilon > 0, \exists P_2\text{ partición de [a,b] tal que } : S(f, P_2) < \overline{I} + \varepsilon.
 	\]
 	
-	
+	\quad \\
 	
 	Tomando:
 	
@@ -296,25 +312,28 @@
 	\forall P \supset P_\varepsilon \quad \Rightarrow \quad I - \varepsilon < s(f, P_1) \leq s(f, P) \leq S(f,P) \leq S(f, P_2) < I + \varepsilon.
 	\]
 	
+	\quad \\
 	
-	
-	Conociendo que la suma integral de Riemann se encuentra acotada por las sumas inferiores y superiores de Darboux:
+	Conociendo que la suma de Riemann se encuentra acotada por las sumas inferiores y superiores de Darboux:
 	
 	
 	
 	\[
-	\forall {E\xi_i} P \supset P_\varepsilon \quad \Rightarrow \quad I - \varepsilon < s(f, P) \leq \sigma(f, P, \{\xi_i\}) \leq S(f,P) < I + \varepsilon.
+	\forall {\xi_i} \left. 
+	 P\right.  \supset P_\varepsilon \quad \Rightarrow \quad I - \varepsilon < s(f, P) \leq \sigma(f, P, \{\xi_i\}) \leq S(f,P) < I + \varepsilon.
 	\]
 	
-	
+	\quad \\
 	
 	Restando I a la expresión y quedándonos solo con la suma de Riemann, obtenemos que:
 	
 	
 	
 	\[
-	\forall \varepsilon > 0, \exists P_\varepsilon \forall P \cup P_\varepsilon \quad \big| \sigma(f,P) - I \big| < \varepsilon.
+	\forall \varepsilon > 0, \exists P_\varepsilon \left. \forall P \supset P_\varepsilon \right.  \quad \big| \sigma(f, P, \{\xi_i\}) - I \big| < \varepsilon.
 	\]
+	
+	\quad \\
 	
 	Concluimos que:
 	
@@ -322,11 +341,15 @@
 	\left| \sigma(f, P, \{\xi_i\}) - I \right| < \varepsilon
 	\]
 	
+	\quad \\
+	
 	Finalmente, hemos demostrado las siguientes implicaciones:
 	
 	\[
 	f \in \mathcal{R}[a,b] \Rightarrow \varepsilon > 0, \exists P \text{ de [a,b] tal que }   S(f,P) - s(f,P) < \varepsilon \Rightarrow \overline{I} = \underline{I} \Rightarrow f \in \mathcal{R}[a,b] 
 	\]
+	
+	\quad \\
 	
 	Por tanto, por transitividad concluimos que:
 	
@@ -334,9 +357,60 @@
 	f \in \mathcal{R}[a,b] \Longleftrightarrow \varepsilon > 0, \exists P \text{ de [a,b] tal que }   S(f,P) - s(f,P) < \varepsilon \Longleftrightarrow \overline{I} = \underline{I} 
 	\]
 	
+	
+	\quad \\
+
+	
 	Hemos demostrado la condición necesaria y suficiente para la integrabilidad, mostrando las 3 equivalencias del teorema.
 	
-	\subsection{Gráficos de las sumas de Riemann y las sumas inferiores y superiores de Darboux}
+	
+	
+	\clearpage 
+\begin{figure}
+	\centering 
+	\caption{Función $ \frac{\sin 10x}{x} + 2.5 $ en el intervalo $ [0.1,2] $}
+	\label{fig:funcion-2}
+	\includegraphics[width=0.7\linewidth, height=0.3\textheight]{"funcion 2"}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\caption{Función $ \left|\sin x\right| $ en el intervalo $ [0,10] $}
+	\includegraphics[width=0.7\linewidth, height=0.3\textheight]{"funcion 1"}
+	\label{fig:funcion-1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\caption{Función $ \frac{1}{1 + x^2} $ en el intervalo $ [-10,10] $}
+	\includegraphics[width=0.7\linewidth, height=0.3\textheight]{"funcion 3"}
+	\label{fig:funcion-3}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\caption{Función no Riemann integrable $\tan$ x en el intervalo $ [-10,10] $}
+	\label{fig:no-integrable-1}
+	\includegraphics[width=0.7\linewidth, height=0.3\textheight]{"no integrable 1"}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\caption{Función no Riemann integrable $\tan$}
+	\label{fig:no-integrable-2}
+	\includegraphics[width=0.7\linewidth, height=0.3\textheight]{"no integrable 2"}
+\end{figure}
+
+
+
+
+	
+	
+	
+	
+	
+
+	
 	
 \end{document}
 
